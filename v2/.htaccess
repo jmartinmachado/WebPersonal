@@ -1,0 +1,31 @@
+#php_flag register_globals on
+
+Redirect 301 /wp-config.php http://www.justice.gov/oig/special/9712/index.htm
+
+<IfModule mod_expires.c>
+		ExpiresActive On
+		ExpiresByType application/x-shockwave-flash "access plus 52 weeks"
+		ExpiresByType text/javascript "access plus 52 weeks"
+		ExpiresByType text/css "access plus 52 weeks"
+		ExpiresByType image/png "access plus 52 weeks"
+</IfModule>
+
+ErrorDocument 404 http://www.juanmartinmachado.com/404.php
+ErrorDocument 403 http://www.juanmartinmachado.com/404.php
+
+
+<IfModule mod_rewrite.c>
+	#Options +FollowSymlinks
+	RewriteEngine on
+	#RewriteCond %{SCRIPT_FILENAME} !-d
+	#RewriteCond %{SCRIPT_FILENAME} !-f
+	#RewriteCond %{HTTP_HOST} !^juanmartinmachado.com$ [NC,L]
+	#RewriteRule ^(.*)$ http://juanmartinmachado.com/$1 [L,R=301]
+	
+	RewriteRule ^inicio$ index.php [NC,L]
+	RewriteRule ^contacto$ contacto.php [NC,L]
+	RewriteRule ^proyectos$ proyectos.php [NC,L]
+	RewriteRule ^admin$ admin.php [NC,L]
+	RewriteRule ^404$ 404.php [NC,L]
+	RewriteRule ^403$ 403.php [NC,L]
+</IfModule>
